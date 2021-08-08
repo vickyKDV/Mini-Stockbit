@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_watchlist">
+
+    <fragment
+        android:id="@+id/nav_portofolio"
+        android:name="com.vickykdv.mystockbit.view.ui.portofolio.PortofolioFragment"
+        android:label="Portofolio"
+        tools:layout="@layout/fragment_portofolio" />
+    <fragment
+        android:id="@+id/nav_chat"
+        android:name="com.vickykdv.mystockbit.view.ui.chat.ChatFragment"
+        android:label="Chat"
+        tools:layout="@layout/fragment_chat" />
+    <fragment
+        android:id="@+id/nav_watchlist"
+        android:name="com.vickykdv.mystockbit.view.ui.watchlist.WatchListFragment"
+        android:label="Watchlist"
+        tools:layout="@layout/fragment_watchlist" />
+
+    <fragment
+        android:id="@+id/nav_stream"
+        android:name="com.vickykdv.mystockbit.view.ui.stream.StreamFragment"
+        android:label="Stream"
+        tools:layout="@layout/fragment_stream" />
+
+    <fragment
+        android:id="@+id/nav_search"
+        android:name="com.vickykdv.mystockbit.view.ui.search.SearchFragment"
+        android:label="Search"
+        tools:layout="@layout/fragment_search" />
+</navigation>

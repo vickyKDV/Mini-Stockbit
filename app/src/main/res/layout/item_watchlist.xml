@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/txtAcronim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="ABC"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/poppins_bold"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/txtName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtAcronim"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        tools:text="Abcdefg"
+        android:fontFamily="@font/poppins"
+        android:textColor="#AFAFAF" />
+
+    <TextView
+        tools:text="USD 10.000"
+        android:id="@+id/txtPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:textStyle="bold"
+        android:layout_alignParentEnd="true"
+        android:textSize="16sp" />
+
+    <TextView
+        tools:text="100.00 (100.00)"
+        android:id="@+id/txtCurrencyChange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:textColor="#AFAFAF"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/txtPrice" />
+
+</RelativeLayout>

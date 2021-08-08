@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_watchlist"
+        android:icon="@drawable/ic_watchlist"
+        android:title="Watchlist"
+        android:visible="true" />
+
+    <item
+        android:id="@+id/nav_stream"
+        android:icon="@drawable/ic_stream"
+        android:title="Stream"
+        android:visible="true" />
+
+    <item
+        android:id="@+id/nav_search"
+        android:icon="@drawable/ic_search"
+        android:title="Search"
+        android:visible="true" />
+    <item
+        android:id="@+id/nav_chat"
+        android:icon="@drawable/ic_chat"
+        android:title="Chat"
+        android:visible="true" />
+    <item
+        android:id="@+id/nav_portofolio"
+        android:icon="@drawable/ic_portofolio"
+        android:title="Portofolio"
+        android:visible="true" />
+
+</menu>
