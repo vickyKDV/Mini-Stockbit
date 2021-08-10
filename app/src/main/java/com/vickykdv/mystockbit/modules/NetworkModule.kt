@@ -18,24 +18,27 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import java.util.logging.Level
+import com.github.simonpercic.oklog3.OkLogInterceptor
+import okhttp3.logging.HttpLoggingInterceptor
+
 
 val networkModule = module {
-//    single { providesHttpLoggingInterceptor() }
+    single { providesHttpLoggingInterceptor() }
     single { providesApiKey() }
     single { providesChucker(androidContext()) }
-    single { providesHttpClient(get(),get()) }
+    single { providesHttpClient(get(),get(),get()) }
     single { providesHttpAdapter(get()) }
     single { providesApiEndPoint(get()) }
 }
 
-//fun providesHttpLoggingInterceptor(): HttpLoggingInterceptor {
-//    return HttpLoggingInterceptor().apply {
-//        level = when (BuildConfig.DEBUG) {
-//            true -> HttpLoggingInterceptor.Level.BODY
-//            false -> HttpLoggingInterceptor.Level.NONE
-//        }
-//    }
-//}
+fun providesHttpLoggingInterceptor(): HttpLoggingInterceptor {
+    return HttpLoggingInterceptor().apply {
+        level = when (BuildConfig.DEBUG) {
+            true -> HttpLoggingInterceptor.Level.BODY
+            false -> HttpLoggingInterceptor.Level.NONE
+        }
+    }
+}
 
 
 fun providesChucker(context: Context): ChuckerInterceptor {
@@ -51,20 +54,27 @@ fun providesApiKey() : Interceptor = Interceptor { chain ->
 }
 
 fun providesHttpClient(
-    chucker:ChuckerInterceptor,
-    apiKey: Interceptor
+    interceptor: HttpLoggingInterceptor,
+    chucker: ChuckerInterceptor,
+    apiKey: Interceptor,
 ): OkHttpClient {
+
+    /**
+     * HTTP LOG
+     **/
+    val httpLogg = LoggingInterceptor.Builder()
+        .setLevel(if(BuildConfig.DEBUG) com.ihsanbal.logging.Level.BASIC else com.ihsanbal.logging.Level.NONE)
+        .log(VERBOSE)
+        .tag("LoggerZ")
+        .request("LoggerZ")
+        .response("LoggerZ")
+
     return OkHttpClient.Builder().apply {
         retryOnConnectionFailure(true)
         readTimeout(30, TimeUnit.SECONDS)
         writeTimeout(30, TimeUnit.SECONDS)
-        addInterceptor(LoggingInterceptor.Builder()
-            .setLevel(com.ihsanbal.logging.Level.BASIC)
-            .log(VERBOSE)
-            .tag("LoggerZ")
-            .request("LoggerZ")
-            .response("LoggerZ")
-            .build())
+        addInterceptor(interceptor)
+        addInterceptor(httpLogg.build())
         addInterceptor(MockInterceptor())
         if(BuildConfig.DEBUG) addInterceptor(chucker)
         addInterceptor(apiKey)
