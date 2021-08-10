@@ -26,8 +26,12 @@ class WatchListDataSource(private val apiService: ApiService) : PageKeyedDataSou
     ) {
         apiService.getWatchList("IDR",1,20)
             .map<WatchListState> {
-                it.data.let { it1 -> callback.onResult(it1.toMutableList(),1,2) }
+
+                it.data.let {
+                        it1 -> callback.onResult(it1.toMutableList(),1,2)
+                }
                 WatchListState.Result(it)
+
             }
             .onErrorReturn(WatchListState::Error)
             .toFlowable()
